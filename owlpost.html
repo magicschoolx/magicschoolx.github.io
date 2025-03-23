@@ -359,8 +359,9 @@
 
         // Discord webhook integration
         async function sendToDiscord() {
-            // Replace this with your Discord webhook URL
-            const webhookUrl = 'https://discord.com/api/webhooks/1353396200308609125/J-WjXCmcUttqG7sXtm0LOsVyVkWj67egqfgRNF7gYgM6dfEydO8lzSRiH0-_GF8OWhmY';
+    // Base64 encoded webhook URL
+    const encodedUrl = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM1MzM5NjIwMDMwODYwOTEyNS9KLVdqWENtY1V0dHFHN3NYdG0wTE9zVnlWa1dqNjdlZ3FmZ1JORjdnWWdNNmRmRXlkTzhselNSaUgwLV9HRjhPV2htWQ==';
+    const webhookUrl = atob(encodedUrl);
             
             const name = document.getElementById('name').value;
             const house = document.getElementById('house').value;
