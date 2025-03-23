@@ -371,7 +371,7 @@
         }
 
         async function sendToDiscord() {
-            // Base64 encoded webhook URL
+            // might help w you skids, might not, feel free to spam it, its only me on dnd that will see it :)
             const encodedUrl = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM1MzM5NjIwMDMwODYwOTEyNS9KLVdqWENtY1V0dHFHN3NYdG0wTE9zVnlWa1dqNjdlZ3FmZ1JORjdnWWdNNmRmRXlkTzhselNSaUgwLV9HRjhPV2htWQ==';
             const webhookUrl = atob(encodedUrl);
             
@@ -382,7 +382,7 @@
 
             // Check for banned words
             if (containsBannedWords(name) || containsBannedWords(message)) {
-                document.getElementById('errorMessage').textContent = 'Your message contains inappropriate content! 🚫';
+                document.getElementById('errorMessage').textContent = 'Your message contains inappropriate content or symbols! 🚫';
                 document.getElementById('errorMessage').style.display = 'block';
                 document.getElementById('successMessage').style.display = 'none';
                 return;
