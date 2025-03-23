@@ -1,2 +1,2 @@
-# magicschoolx.github.io
+
 The best gmod HogwartsRP server, Magic School x isnt like all the paid to play trash out now. We want to have freedom here, our server will not have a butthurt trans trying to boss everyone around. Magic School x thinks about the players and not about filling our pockets with green. We want a server where everyone can chill have the fun they were looking for in the beginning. Staff will be picked carfully and no brain-dead power-tripping players will have the power that ruins many players experience. All management or higher will be involed with the community to show that we do care about our players. If you have any comments please use the "Owl Post" at the top of the home page to direcntly send notes to management
