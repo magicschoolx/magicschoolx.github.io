@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic School X | Owl Post</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+        /* Custom Cursor */
+        * {
+            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ffd700" d="M7,4l10,8l-10,8V4z"/></svg>') 12 12, auto;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'MedievalSharp', cursive;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://raw.githubusercontent.com/magicschoolx/magicschoolx.github.io/refs/heads/main/media/main.bg.hw.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f5f5f5;
+            text-align: center;
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #ffd700;
+            pointer-events: none;
+            animation: sparkleAnim 1.5s linear forwards;
+        }
+
+        @keyframes sparkleAnim {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            background: rgba(10, 10, 10, 0.3);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0px 2px 20px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            animation: magicLine 6s linear infinite;
+        }
+
+        .brand {
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-left: 30px;
+            margin-right: auto;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .brand:hover {
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            color: #fff;
+        }
+
+        .nav-links {
+            margin-right: 30px;
+        }
+
+        .navbar a:not(.brand) {
+            color: #f5f5f5;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 10px;
+        }
+
+        .navbar a:not(.brand):after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: #ffd700;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar a:not(.brand):hover:after {
+            width: 100%;
+        }
+
+        .navbar a:not(.brand):hover {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes magicLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Container */
+        .container {
+            flex: 1;
+            padding: 120px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+            animation: fadeIn 2s ease;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin: 1rem 0;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+            color: #ffd700;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd700, 0 0 40px #ffd700; }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff8c00; }
+        }
+
+        /* Owl Post Specific Styles */
+        .owl-post-container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .owl-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            color: #ffd700;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-family: 'MedievalSharp', cursive;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            font-family: 'MedievalSharp', cursive;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .success-message {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            padding: 1.5rem;
+            background: rgba(10, 10, 10, 0.9);
+            color: #ccc;
+            font-size: 0.9rem;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 -2px 20px rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 100px 15px 40px;
+            }
+            .owl-post-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html" class="brand">MagicSchoolX</a>
+        <div class="nav-links">
+            <a href="rules.html">Rules</a>
+            <a href="houses.html">Houses</a>
+            <a href="owlpost.html">Owl Post</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Owl Post Office</h1>
+        
+        <div class="owl-post-container">
+            <div class="owl-form">
+                <div class="form-group">
+                    <label for="name">Wizard Name</label>
+                    <input type="text" id="name" required placeholder="Harry Potter">
+                </div>
+
+                <div class="form-group">
+                    <label for="house">House</label>
+                    <select id="house" required>
+                        <option value="">Select your house</option>
+                        <option value="Gryffindor">Gryffindor</option>
+                        <option value="Slytherin">Slytherin</option>
+                        <option value="Hufflepuff">Hufflepuff</option>
+                        <option value="Ravenclaw">Ravenclaw</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Message Type</label>
+                    <select id="type" required>
+                        <option value="">Select message type</option>
+                        <option value="Review">Server Review</option>
+                        <option value="Feedback">Feedback</option>
+                        <option value="Report">Report Issue</option>
+                        <option value="Suggestion">Suggestion</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" rows="6" required placeholder="Write your magical message here..."></textarea>
+                </div>
+
+                <button class="submit-btn" onclick="sendToDiscord()">Send Owl 🦉</button>
+                <div id="successMessage" class="success-message">Your owl has been sent successfully! ✨</div>
+                <div id="errorMessage" class="error-message">Your owl got lost! Please try again. 🦉❌</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 Magic School X | No Muggles Allowed.
+    </div>
+
+    <script>
+        // Sparkle effect
+        document.addEventListener('mousemove', (e) => {
+            if(Math.random() > 0.9) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = e.pageX + 'px';
+                sparkle.style.top = e.pageY + 'px';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1500);
+            }
+        });
+
+        // Discord webhook integration
+        async function sendToDiscord() {
+            // Replace this with your Discord webhook URL
+            const webhookUrl = 'https://discord.com/api/webhooks/1353396200308609125/J-WjXCmcUttqG7sXtm0LOsVyVkWj67egqfgRNF7gYgM6dfEydO8lzSRiH0-_GF8OWhmY';
+            
+            const name = document.getElementById('name').value;
+            const house = document.getElementById('house').value;
+            const type = document.getElementById('type').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !house || !type || !message) {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                return;
+            }
+
+            const payload = {
+                embeds: [{
+                    title: `New Owl Post: ${type}`,
+                    color: 0xFFD700,
+                    fields: [
+                        {
+                            name: 'Wizard Name',
+                            value: name,
+                            inline: true
+                        },
+                        {
+                            name: 'House',
+                            value: house,
+                            inline: true
+                        },
+                        {
+                            name: 'Message',
+                            value: message
+                        }
+                    ],
+                    footer: {
+                        text: `Sent via Owl Post • ${new Date().toLocaleDateString()}`
+                    }
+                }]
+            };
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    // Clear form
+                    document.getElementById('name').value = '';
+                    document.getElementById('house').value = '';
+                    document.getElementById('type').value = '';
+                    document.getElementById('message').value = '';
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

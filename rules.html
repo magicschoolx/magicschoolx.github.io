@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic School X | Hogwarts RP Server</title>
+    <title>Magic School X | Server Rules</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
         /* Custom Cursor */
         * {
             cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ffd700" d="M7,4l10,8l-10,8V4z"/></svg>') 12 12, auto;
-        }
-
-        /* General Styles */
-        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -34,18 +30,7 @@
             flex-direction: column;
         }
 
-        /* Floating Elements Animation */
-        .float {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Magical Sparkles */
+        /* Sparkles */
         .sparkle {
             position: absolute;
             width: 4px;
@@ -160,95 +145,64 @@
             animation: fadeIn 2s ease;
         }
 
-        /* Image */
-        .image {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
+        /* Rules Specific Styles */
+        .rules-container {
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            margin: 0 auto 1rem;
-            transition: all 0.5s ease;
-            animation: float 8s ease-in-out infinite;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
         }
 
-        .image:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        .rules-list {
+            text-align: left;
+            list-style: none;
         }
 
-        /* Headings & Text */
+        .rule-category {
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .rule-category h2 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .rule-item {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .rule-item:before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+
+        /* Headings */
         h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin: 1rem 0;
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
             color: #ffd700;
             animation: glow 2s ease-in-out infinite alternate;
-            line-height: 1.2;
         }
 
         @keyframes glow {
             from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd700, 0 0 40px #ffd700; }
             to { text-shadow: 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff8c00; }
-        }
-
-        p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            opacity: 0.9;
-            margin: 0 auto;
-            padding: 0 1rem;
-            max-width: 800px;
-            line-height: 1.8;
-            animation: fadeIn 3s ease;
-        }
-
-        /* Button Container */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            padding: 0 1rem;
-            animation: fadeIn 4s ease;
-        }
-
-        .button {
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            color: #000;
-            background: linear-gradient(45deg, #ffd700, #ff8c00);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.6);
-            position: relative;
-            overflow: hidden;
-            min-width: 180px;
-        }
-
-        .button:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(45deg);
-            transition: 0.5s;
-        }
-
-        .button:hover:before {
-            left: 100%;
-        }
-
-        .button:hover {
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            transform: scale(1.1);
-            box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.8);
         }
 
         /* Footer */
@@ -270,25 +224,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 padding: 100px 15px 40px;
             }
-
-            .button-container {
-                gap: 1rem;
-            }
-
-            .button {
-                min-width: 160px;
-                padding: 0.8rem 1.5rem;
+            .rules-container {
+                margin: 1rem;
+                padding: 1rem;
             }
         }
     </style>
@@ -304,16 +247,34 @@
     </div>
 
     <div class="container">
-        <img src="https://raw.githubusercontent.com/magicschoolx/magicschoolx.github.io/refs/heads/main/media/276527-3400519104.png" 
-             alt="Magic School X Logo" class="image">
+        <h1>Magical Decree of Conduct</h1>
+        
+        <div class="rules-container">
+            <div class="rules-list">
+                <div class="rule-category">
+                    <h2>General Conduct</h2>
+                    <div class="rule-item">Treat all students and staff with respect</div>
+                    <div class="rule-item">No harassment, bullying, or discrimination</div>
+                    <div class="rule-item">Keep chat family-friendly and appropriate</div>
+                    <div class="rule-item">English is the primary language in all channels</div>
+                </div>
 
-        <h1>Welcome to Magic School X</h1>
-        <p>The Ultimate Hogwarts RP Experience in Garry's Mod! Join to attend classes and events, collect spells, and create your story within the wizarding world!</p>
+                <div class="rule-category">
+                    <h2>Roleplay Guidelines</h2>
+                    <div class="rule-item">Stay in character during roleplay sessions</div>
+                    <div class="rule-item">No powergaming or godmodding</div>
+                    <div class="rule-item">Respect the established magical lore</div>
+                    <div class="rule-item">Follow staff instructions during events</div>
+                </div>
 
-        <div class="button-container">
-            <a href="steam://connect/yourserverip:27015" class="button">Connect</a>
-            <a href="discord.gg/yourdiscordinvite" class="button">Join Discord</a>
-            <a href="rules.html" class="button">Server Rules</a>
+                <div class="rule-category">
+                    <h2>Technical Rules</h2>
+                    <div class="rule-item">No exploits or unauthorized mods</div>
+                    <div class="rule-item">Report bugs to staff immediately</div>
+                    <div class="rule-item">No alternate accounts allowed</div>
+                    <div class="rule-item">Keep your wand to yourself</div>
+                </div>
+            </div>
         </div>
     </div>
 
