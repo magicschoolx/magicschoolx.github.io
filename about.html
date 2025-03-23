@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic School X | Hogwarts RP Server</title>
+    <title>About | Magic School X</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
@@ -32,33 +32,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-
-        /* Floating Elements Animation */
-        .float {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Magical Sparkles */
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: #ffd700;
-            pointer-events: none;
-            animation: sparkleAnim 1.5s linear forwards;
-        }
-
-        @keyframes sparkleAnim {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(2); opacity: 0; }
         }
 
         /* Navbar */
@@ -141,11 +114,6 @@
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-        @keyframes magicLine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
         /* Container */
         .container {
             flex: 1;
@@ -160,95 +128,58 @@
             animation: fadeIn 2s ease;
         }
 
-        /* Image */
-        .image {
-            max-width: 300px;
+        /* About Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            margin: 0 auto 1rem;
-            transition: all 0.5s ease;
-            animation: float 8s ease-in-out infinite;
+            max-width: 1200px;
+            margin: 2rem auto;
         }
 
-        .image:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        .about-card {
+            background: rgba(10, 10, 10, 0.7);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease;
         }
 
-        /* Headings & Text */
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .about-card h2 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .team-member {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #ffd700;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
         h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin: 1rem 0;
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
             color: #ffd700;
             animation: glow 2s ease-in-out infinite alternate;
-            line-height: 1.2;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd700, 0 0 40px #ffd700; }
-            to { text-shadow: 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff8c00; }
-        }
-
-        p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            opacity: 0.9;
-            margin: 0 auto;
-            padding: 0 1rem;
-            max-width: 800px;
-            line-height: 1.8;
-            animation: fadeIn 3s ease;
-        }
-
-        /* Button Container */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            padding: 0 1rem;
-            animation: fadeIn 4s ease;
-        }
-
-        .button {
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            color: #000;
-            background: linear-gradient(45deg, #ffd700, #ff8c00);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.6);
-            position: relative;
-            overflow: hidden;
-            min-width: 180px;
-        }
-
-        .button:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(45deg);
-            transition: 0.5s;
-        }
-
-        .button:hover:before {
-            left: 100%;
-        }
-
-        .button:hover {
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            transform: scale(1.1);
-            box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.8);
         }
 
         /* Footer */
@@ -264,16 +195,36 @@
             -webkit-backdrop-filter: blur(5px);
         }
 
+        /* Sparkle Effect */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #ffd700;
+            pointer-events: none;
+            animation: sparkleAnim 1.5s linear forwards;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        @keyframes sparkleAnim {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd700, 0 0 40px #ffd700; }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff8c00; }
+        }
+
+        @keyframes magicLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         /* Responsive Design */
@@ -281,14 +232,10 @@
             .container {
                 padding: 100px 15px 40px;
             }
-
-            .button-container {
-                gap: 1rem;
-            }
-
-            .button {
-                min-width: 160px;
-                padding: 0.8rem 1.5rem;
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
             }
         }
     </style>
@@ -304,16 +251,43 @@
     </div>
 
     <div class="container">
-        <img src="https://raw.githubusercontent.com/magicschoolx/magicschoolx.github.io/refs/heads/main/media/276527-3400519104.png" 
-             alt="Magic School X Logo" class="image">
+        <h1>About Magic School X</h1>
+        <p>Welcome to the magical world of roleplay and adventure. Learn about our server's history and the team that makes the magic happen.</p>
 
-        <h1>Welcome to Magic School X</h1>
-        <p>The Ultimate Hogwarts RP Experience in Garry's Mod! Join to attend classes and events, collect spells, and create your story within the wizarding world!</p>
+        <div class="about-grid">
+            <div class="about-card">
+                <h2>Our Story</h2>
+                <p>Founded in 2023, Magic School X has grown into a thriving community of wizards and witches from around the world. Our server provides an immersive Hogwarts experience in Garry's Mod.</p>
+            </div>
 
-        <div class="button-container">
-            <a href="steam://connect/yourserverip:27015" class="button">Connect</a>
-            <a href="discord.gg/yourdiscordinvite" class="button">Join Discord</a>
-            <a href="rules.html" class="button">Server Rules</a>
+            <div class="about-card">
+                <h2>Our Mission</h2>
+                <p>To create the most authentic and engaging magical roleplay experience, where every player can live out their wizarding world dreams and forge lasting friendships.</p>
+            </div>
+
+            <div class="about-card">
+                <h2>Community Values</h2>
+                <p>We believe in fostering a welcoming, inclusive, and magical environment where creativity and storytelling flourish. Every wizard and witch has a place at Magic School X.</p>
+            </div>
+        </div>
+
+        <h2 style="color: #ffd700; margin-top: 3rem;">Our Team</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="team-member">
+                    <img src="path/to/headmaster-avatar.jpg" alt="Headmaster">
+                    <h3>Headmaster Phoenix</h3>
+                    <p>Server Owner & Administrator</p>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <div class="team-member">
+                    <img src="path/to/professor-avatar.jpg" alt="Professor">
+                    <h3>Professor Emerald</h3>
+                    <p>Head Moderator</p>
+                </div>
+            </div>
         </div>
     </div>
 
