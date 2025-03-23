@@ -1,2 +1,2 @@
 # magicschoolx.github.io
-Official MagicSchoolX Website
+test / temp site
