@@ -357,16 +357,37 @@
             }
         });
 
-        // Discord webhook integration
+        const bannedWords = [
+            '@everyone',
+            '@here',
+            'nigger',
+            'nigga',
+            'negro',
+            // Will add more as needed
+        ];
+
+        function containsBannedWords(text) {
+            const lowerText = text.toLowerCase();
+            return bannedWords.some(word => lowerText.includes(word.toLowerCase()));
+        }
+
         async function sendToDiscord() {
-    // Base64 encoded webhook URL
-    const encodedUrl = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM1MzM5NjIwMDMwODYwOTEyNS9KLVdqWENtY1V0dHFHN3NYdG0wTE9zVnlWa1dqNjdlZ3FmZ1JORjdnWWdNNmRmRXlkTzhselNSaUgwLV9HRjhPV2htWQ==';
-    const webhookUrl = atob(encodedUrl);
+            // Base64 encoded webhook URL
+            const encodedUrl = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM1MzM5NjIwMDMwODYwOTEyNS9KLVdqWENtY1V0dHFHN3NYdG0wTE9zVnlWa1dqNjdlZ3FmZ1JORjdnWWdNNmRmRXlkTzhselNSaUgwLV9HRjhPV2htWQ==';
+            const webhookUrl = atob(encodedUrl);
             
             const name = document.getElementById('name').value;
             const house = document.getElementById('house').value;
             const type = document.getElementById('type').value;
             const message = document.getElementById('message').value;
+
+            // Check for banned words
+            if (containsBannedWords(name) || containsBannedWords(message)) {
+                document.getElementById('errorMessage').textContent = 'Your message contains inappropriate content! 🚫';
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                return;
+            }
 
             if (!name || !house || !type || !message) {
                 document.getElementById('errorMessage').style.display = 'block';
