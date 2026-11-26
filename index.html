@@ -4,337 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic School X | Hogwarts RP Server</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
-
-        /* Custom Cursor */
-        * {
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ffd700" d="M7,4l10,8l-10,8V4z"/></svg>') 12 12, auto;
-        }
-
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'MedievalSharp', cursive;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: url('https://raw.githubusercontent.com/magicschoolx/magicschoolx.github.io/refs/heads/main/media/main.bg.hw.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #f5f5f5;
-            text-align: center;
-            overflow-x: hidden;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Floating Elements Animation */
-        .float {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Magical Sparkles */
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: #ffd700;
-            pointer-events: none;
-            animation: sparkleAnim 1.5s linear forwards;
-        }
-
-        @keyframes sparkleAnim {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(2); opacity: 0; }
-        }
-
-        /* Navbar */
-        .navbar {
-            width: 100%;
-            background: rgba(10, 10, 10, 0.3);
-            padding: 15px 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            box-shadow: 0px 2px 20px rgba(255, 215, 0, 0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .navbar:before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ffd700, transparent);
-            animation: magicLine 6s linear infinite;
-        }
-
-        .brand {
-            color: #ffd700;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-left: 30px;
-            margin-right: auto;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-            transition: 0.3s;
-        }
-
-        .brand:hover {
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            color: #fff;
-        }
-
-        .nav-links {
-            margin-right: 30px;
-        }
-
-        .navbar a:not(.brand) {
-            color: #f5f5f5;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 10px;
-        }
-
-        .navbar a:not(.brand):after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background: #ffd700;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .navbar a:not(.brand):hover:after {
-            width: 100%;
-        }
-
-        .navbar a:not(.brand):hover {
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        @keyframes magicLine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Container */
-        .container {
-            flex: 1;
-            padding: 120px 20px 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 2rem;
-            animation: fadeIn 2s ease;
-        }
-
-        /* Image */
-        .image {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            margin: 0 auto 1rem;
-            transition: all 0.5s ease;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .image:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
-        }
-
-        /* Headings & Text */
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin: 1rem 0;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
-            color: #ffd700;
-            animation: glow 2s ease-in-out infinite alternate;
-            line-height: 1.2;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd700, 0 0 40px #ffd700; }
-            to { text-shadow: 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff8c00; }
-        }
-
-        p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            opacity: 0.9;
-            margin: 0 auto;
-            padding: 0 1rem;
-            max-width: 800px;
-            line-height: 1.8;
-            animation: fadeIn 3s ease;
-        }
-
-        /* Button Container */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            padding: 0 1rem;
-            animation: fadeIn 4s ease;
-        }
-
-        .button {
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            color: #000;
-            background: linear-gradient(45deg, #ffd700, #ff8c00);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.6);
-            position: relative;
-            overflow: hidden;
-            min-width: 180px;
-        }
-
-        .button:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(45deg);
-            transition: 0.5s;
-        }
-
-        .button:hover:before {
-            left: 100%;
-        }
-
-        .button:hover {
-            background: linear-gradient(45deg, #ff8c00, #ffd700);
-            transform: scale(1.1);
-            box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.8);
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: auto;
-            padding: 1.5rem;
-            background: rgba(10, 10, 10, 0.9);
-            color: #ccc;
-            font-size: 0.9rem;
-            border-top: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 -2px 20px rgba(255, 215, 0, 0.1);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 100px 15px 40px;
-            }
-
-            .button-container {
-                gap: 1rem;
-            }
-
-            .button {
-                min-width: 160px;
-                padding: 0.8rem 1.5rem;
-            }
-        }
-    </style>
+    <meta name="description" content="Magic School X — the ultimate Hogwarts roleplay experience in Garry's Mod. Attend classes, master spells, and write your own story.">
+    <meta name="theme-color" content="#07090f">
+    <link rel="icon" href="media/crest.jpg">
+    <link rel="preload" as="image" href="media/castle.jpg">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <div class="navbar">
-        <a href="index.html" class="brand">MagicSchoolX</a>
-        <div class="nav-links">
-            <a href="about.html">About</a>
-            <a href="rules.html">Rules</a>
-            <a href="owlpost.html">Owl Post</a>
+    <div class="sky"></div>
+    <canvas id="particles"></canvas>
+
+    <header class="nav">
+        <a href="index.html" class="brand"><span class="brand-mark"></span><span>MAGIC SCHOOL <b>X</b></span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="owlpost.html">Owl Post</a></li>
+        </ul>
+        <a href="https://discord.gg/dCSd6uMT4V" class="btn btn-primary btn-sm nav-cta">Join Discord</a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-inner">
+                <div class="hero-badge intro" style="--d:.1s"><span class="dot"></span>Garry's Mod · Hogwarts Roleplay</div>
+                <h1>
+                    <span class="line"><span style="--d:.25s">Welcome to</span></span>
+                    <span class="line"><span class="gold-text" style="--d:.4s">Magic School X</span></span>
+                </h1>
+                <p class="lead intro" style="--d:.7s">Attend classes and events, collect spells, and write your own story within the wizarding world. No pay-to-win. No power trips. Just magic.</p>
+                <div class="hero-actions intro" style="--d:.9s">
+                    <a href="steam://connect/yourserverip:27015" class="btn btn-primary">
+                        Connect to Server
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://discord.gg/dCSd6uMT4V" class="btn btn-ghost">Join the Discord</a>
+                </div>
+            </div>
+            <div class="scroll-hint intro" style="--d:1.3s"><span class="mouse"></span>Scroll</div>
+        </section>
+
+        <div class="stats reveal">
+            <div class="stat"><strong data-count="4">0</strong><span>Houses</span></div>
+            <div class="stat"><strong data-count="100" data-suffix="+">0</strong><span>Spells to Master</span></div>
+            <div class="stat"><strong>$0</strong><span>Pay-to-Win</span></div>
+            <div class="stat"><strong>24/7</strong><span>Always Open</span></div>
         </div>
-    </div>
 
-    <div class="container">
-        <img src="https://raw.githubusercontent.com/magicschoolx/magicschoolx.github.io/refs/heads/main/media/276527-3400519104.png" 
-             alt="Magic School X Logo" class="image">
+        <section class="section">
+            <div class="section-head center reveal">
+                <span class="eyebrow">The Experience</span>
+                <h2>Your story starts at the <span class="gold-text">castle gates</span></h2>
+                <p>Everything you loved about the wizarding world — built for players, not wallets.</p>
+            </div>
 
-        <h1>Welcome to Magic School X</h1>
-        <p>The Ultimate Hogwarts RP Experience in Garry's Mod! Join to attend classes and events, collect spells, and create your story within the wizarding world!</p>
+            <div class="grid grid-3">
+                <article class="card reveal" style="--d:0s">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4L2 7z"/><path d="M6 9v5c0 1.7 2.7 3 6 3s6-1.3 6-3V9"/><path d="M22 7v6"/></svg></div>
+                    <h3>Attend Classes</h3>
+                    <p>Sit in on lessons run by real professors. Charms, Potions, Defense — learn the craft and earn your place.</p>
+                </article>
+                <article class="card reveal" style="--d:.1s">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L16 8"/><path d="M15 3l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/><path d="M20 11l.6 1.4L22 13l-1.4.6L20 15l-.6-1.4L18 13l1.4-.6z"/></svg></div>
+                    <h3>Collect Spells</h3>
+                    <p>Build your spellbook from the ground up. Every incantation you master opens up new ways to play.</p>
+                </article>
+                <article class="card reveal" style="--d:.2s">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg></div>
+                    <h3>Live Events</h3>
+                    <p>Duelling tournaments, Quidditch, feasts and staff-run storylines that keep the castle alive.</p>
+                </article>
+                <article class="card reveal" style="--d:0s">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                    <h3>Fair Staff</h3>
+                    <p>Staff are picked carefully. No power-tripping — just people who care about your experience.</p>
+                </article>
+                <article class="card reveal" style="--d:.1s">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.8 9a3 3 0 00-2.8-1.5c-1.7 0-3 1-3 2.3 0 3 6 1.5 6 4.5 0 1.3-1.3 2.2-3 2.2A3.2 3.2 0 019 15"/><path d="M12 6v1.5M12 16.5V18"/><path d="M5 19L19 5"/></svg></div>
+                    <h3>Never Pay-to-Win</h3>
+                    <p>We think about the players, not about filling our pockets. Everyone plays on the same field.</p>
+                </article>
+                <article class="card reveal" style="--d:.2s">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.6A8 8 0 1121 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div>
+                    <h3>Your Voice Matters</h3>
+                    <p>Send an Owl Post straight to management. Leadership is active in the community — and listens.</p>
+                </article>
+            </div>
+        </section>
 
-        <div class="button-container">
-            <a href="steam://connect/yourserverip:27015" class="button">Connect</a>
-            <a href="https://discord.gg/dCSd6uMT4V" class="button">Join Discord</a>
-            <a href="rules.html" class="button">Server Rules</a>
+        <section class="section" style="padding-top:0">
+            <div class="section-head center reveal">
+                <span class="eyebrow">The Sorting</span>
+                <h2>Where do you <span class="gold-text">belong?</span></h2>
+                <p>Four houses. One castle. Pick your colours and earn points for glory.</p>
+            </div>
+            <div class="houses">
+                <div class="house reveal" data-house="g" data-letter="G" style="--d:0s"><h3>Gryffindor</h3><p>Bravery &amp; daring</p></div>
+                <div class="house reveal" data-house="s" data-letter="S" style="--d:.1s"><h3>Slytherin</h3><p>Ambition &amp; cunning</p></div>
+                <div class="house reveal" data-house="h" data-letter="H" style="--d:.2s"><h3>Hufflepuff</h3><p>Loyalty &amp; patience</p></div>
+                <div class="house reveal" data-house="r" data-letter="R" style="--d:.3s"><h3>Ravenclaw</h3><p>Wit &amp; wisdom</p></div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:0">
+            <div class="cta reveal">
+                <span class="eyebrow">Your Letter Has Arrived</span>
+                <h2 style="margin-top:18px">Ready to board the <span class="gold-text">express?</span></h2>
+                <p>Hop into the server, say hi in Discord, and read the rules before your first class.</p>
+                <div class="hero-actions">
+                    <a href="steam://connect/yourserverip:27015" class="btn btn-primary">
+                        Connect Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="rules.html" class="btn btn-ghost">Read the Rules</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>&copy; <span data-year>2025</span> Magic School X · No Muggles Allowed.</span>
+            <nav class="footer-links">
+                <a href="about.html">About</a>
+                <a href="rules.html">Rules</a>
+                <a href="owlpost.html">Owl Post</a>
+                <a href="https://discord.gg/dCSd6uMT4V">Discord</a>
+            </nav>
         </div>
-    </div>
+    </footer>
 
-    <div class="footer">
-        &copy; 2025 Magic School X | No Muggles Allowed.
-    </div>
-
-    <script>
-        document.addEventListener('mousemove', (e) => {
-            if(Math.random() > 0.9) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.pageX + 'px';
-                sparkle.style.top = e.pageY + 'px';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1500);
-            }
-        });
-    </script>
+    <script src="assets/main.js"></script>
 </body>
 </html>
