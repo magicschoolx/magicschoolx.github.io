@@ -3,299 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic School X | Server Rules</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
-
-        /* Custom Cursor */
-        * {
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ffd700" d="M7,4l10,8l-10,8V4z"/></svg>') 12 12, auto;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'MedievalSharp', cursive;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: url('https://raw.githubusercontent.com/magicschoolx/magicschoolx.github.io/refs/heads/main/media/main.bg.hw.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #f5f5f5;
-            text-align: center;
-            overflow-x: hidden;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Sparkles */
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: #ffd700;
-            pointer-events: none;
-            animation: sparkleAnim 1.5s linear forwards;
-        }
-
-        @keyframes sparkleAnim {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(2); opacity: 0; }
-        }
-
-        /* Navbar */
-        .navbar {
-            width: 100%;
-            background: rgba(10, 10, 10, 0.3);
-            padding: 15px 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            box-shadow: 0px 2px 20px rgba(255, 215, 0, 0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .navbar:before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ffd700, transparent);
-            animation: magicLine 6s linear infinite;
-        }
-
-        .brand {
-            color: #ffd700;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-left: 30px;
-            margin-right: auto;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-            transition: 0.3s;
-        }
-
-        .brand:hover {
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            color: #fff;
-        }
-
-        .nav-links {
-            margin-right: 30px;
-        }
-
-        .navbar a:not(.brand) {
-            color: #f5f5f5;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 10px;
-        }
-
-        .navbar a:not(.brand):after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background: #ffd700;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .navbar a:not(.brand):hover:after {
-            width: 100%;
-        }
-
-        .navbar a:not(.brand):hover {
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        @keyframes magicLine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Container */
-        .container {
-            flex: 1;
-            padding: 120px 20px 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 2rem;
-            animation: fadeIn 2s ease;
-        }
-
-        /* Rules Specific Styles */
-        .rules-container {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 800px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-
-        .rules-list {
-            text-align: left;
-            list-style: none;
-        }
-
-        .rule-category {
-            margin-bottom: 2rem;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .rule-category h2 {
-            color: #ffd700;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
-            padding-bottom: 0.5rem;
-        }
-
-        .rule-item {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-            position: relative;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .rule-item:before {
-            content: "⚡";
-            position: absolute;
-            left: 0;
-            color: #ffd700;
-        }
-
-        /* Headings */
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin: 1rem 0;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
-            color: #ffd700;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd700, 0 0 40px #ffd700; }
-            to { text-shadow: 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff8c00; }
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: auto;
-            padding: 1.5rem;
-            background: rgba(10, 10, 10, 0.9);
-            color: #ccc;
-            font-size: 0.9rem;
-            border-top: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 -2px 20px rgba(255, 215, 0, 0.1);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 100px 15px 40px;
-            }
-            .rules-container {
-                margin: 1rem;
-                padding: 1rem;
-            }
-        }
-    </style>
+    <title>Server Rules | Magic School X</title>
+    <meta name="description" content="The Magical Decree of Conduct — rules for the Magic School X Hogwarts RP server.">
+    <meta name="theme-color" content="#07090f">
+    <link rel="icon" href="media/crest.jpg">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <div class="navbar">
-        <a href="index.html" class="brand">MagicSchoolX</a>
-        <div class="nav-links">
-            <a href="about.html">About</a>
-            <a href="rules.html">Rules</a>
-            <a href="owlpost.html">Owl Post</a>
-        </div>
-    </div>
+    <div class="sky"></div>
+    <canvas id="particles"></canvas>
 
-    <div class="container">
-        <h1>Magical Decree of Conduct</h1>
-        
-        <div class="rules-container">
-            <div class="rules-list">
-                <div class="rule-category">
-                    <h2>General Conduct</h2>
-                    <div class="rule-item">Treat all students and staff with respect</div>
-                    <div class="rule-item">No harassment, bullying, or discrimination</div>
-                    <div class="rule-item">Keep chat family-friendly and appropriate</div>
-                    <div class="rule-item">English is the primary language in all channels</div>
-                </div>
+    <header class="nav">
+        <a href="index.html" class="brand"><span class="brand-mark"></span><span>MAGIC SCHOOL <b>X</b></span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="owlpost.html">Owl Post</a></li>
+        </ul>
+        <a href="https://discord.gg/dCSd6uMT4V" class="btn btn-primary btn-sm nav-cta">Join Discord</a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </header>
 
-                <div class="rule-category">
-                    <h2>Roleplay Guidelines</h2>
-                    <div class="rule-item">Stay in character during roleplay sessions</div>
-                    <div class="rule-item">No powergaming or godmodding</div>
-                    <div class="rule-item">Respect the established magical lore</div>
-                    <div class="rule-item">Follow staff instructions during events</div>
-                </div>
+    <main>
+        <section class="page-hero">
+            <span class="eyebrow intro" style="--d:.1s">Server Rules</span>
+            <h1 class="intro" style="--d:.2s">Magical Decree <span class="gold-text">of Conduct</span></h1>
+            <p class="intro" style="--d:.35s">Keep the castle fun for everyone. Breaking these may land you in detention — or worse.</p>
+        </section>
 
-                <div class="rule-category">
-                    <h2>Technical Rules</h2>
-                    <div class="rule-item">No exploits or unauthorized mods</div>
-                    <div class="rule-item">Report bugs to staff immediately</div>
-                    <div class="rule-item">No alternate accounts allowed</div>
-                    <div class="rule-item">Keep your wand to yourself</div>
-                </div>
+        <section class="section" style="padding-top:30px">
+            <div class="rules-wrap">
+                <details class="card rule-group reveal" open>
+                    <summary>
+                        <span class="rule-num">I</span>
+                        <h2>General Conduct</h2>
+                        <span class="count">4 rules</span>
+                        <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </summary>
+                    <div class="rule-body">
+                        <ul class="rule-list">
+                            <li>Treat all students and staff with respect.</li>
+                            <li>No harassment, bullying, or discrimination.</li>
+                            <li>Keep chat family-friendly and appropriate.</li>
+                            <li>English is the primary language in all channels.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="card rule-group reveal" style="--d:.08s" open>
+                    <summary>
+                        <span class="rule-num">II</span>
+                        <h2>Roleplay Guidelines</h2>
+                        <span class="count">4 rules</span>
+                        <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </summary>
+                    <div class="rule-body">
+                        <ul class="rule-list">
+                            <li>Stay in character during roleplay sessions.</li>
+                            <li>No powergaming or godmodding.</li>
+                            <li>Respect the established magical lore.</li>
+                            <li>Follow staff instructions during events.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="card rule-group reveal" style="--d:.16s" open>
+                    <summary>
+                        <span class="rule-num">III</span>
+                        <h2>Technical Rules</h2>
+                        <span class="count">4 rules</span>
+                        <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </summary>
+                    <div class="rule-body">
+                        <ul class="rule-list">
+                            <li>No exploits or unauthorized mods.</li>
+                            <li>Report bugs to staff immediately.</li>
+                            <li>No alternate accounts allowed.</li>
+                            <li>Keep your wand to yourself.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <p class="reveal" style="text-align:center;color:var(--muted);margin-top:24px">
+                    Questions about a rule? <a href="owlpost.html" style="color:var(--gold)">Send an Owl Post</a> to management.
+                </p>
             </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>&copy; <span data-year>2025</span> Magic School X · No Muggles Allowed.</span>
+            <nav class="footer-links">
+                <a href="about.html">About</a>
+                <a href="rules.html">Rules</a>
+                <a href="owlpost.html">Owl Post</a>
+                <a href="https://discord.gg/dCSd6uMT4V">Discord</a>
+            </nav>
         </div>
-    </div>
+    </footer>
 
-    <div class="footer">
-        &copy; 2025 Magic School X | No Muggles Allowed.
-    </div>
-
-    <script>
-        document.addEventListener('mousemove', (e) => {
-            if(Math.random() > 0.9) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.pageX + 'px';
-                sparkle.style.top = e.pageY + 'px';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1500);
-            }
-        });
-    </script>
+    <script src="assets/main.js"></script>
 </body>
 </html>
